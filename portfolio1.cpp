@@ -1,39 +1,122 @@
 #include <iostream>
 #include <string>
+#include <cctype>
+
 using namespace std;
 
-void loadLevel1() // LEVEL 1
+void loadLevel1()
 {
     cout << "Level 1 loaded" << endl;
-    //MAP
-    string level[] =
+
+    string map[5] =
     {
         "########",
         "#@     #",
         "#   #  #",
-        "#      #",
+        "#   $  #",
         "########"
-    }; //closes
-    for (int i = 0; i < 5; i++)
+    };
+
+    int playerX = 1;
+    int playerY = 1;
+
+    char input;
+
+    while (true)
     {
-        cout << level[i] << endl;
+        // print map
+        for (int i = 0; i < 5; i++)
+        {
+            cout << map[i] << endl;
+        }
+
+        //get input
+        cout << "Move (WASD): ";
+        cin >> input;
+
+        input = tolower(input);
+
+        int newX = playerX;
+        int newY = playerY;
+
+        if (input == 'w') newX--;
+        if (input == 's') newX++;
+        if (input == 'a') newY--;
+        if (input == 'd') newY++;
+
+        // win condition
+        if (map[newX][newY] == '$')
+        {
+            cout << "YOU WIN LEVEL 1!" << endl;
+            return; // exits level safely
+        }
+
+        // Wall check and moving
+        if (map[newX][newY] != '#')
+        {
+            map[playerX][playerY] = ' ';
+            playerX = newX;
+            playerY = newY;
+            map[playerX][playerY] = '@';
+        }
     }
 }
 
 void loadLevel2() // LEVEL 2
 {
     cout << "Level 2 loaded" << endl;
-     string level[] =
+
+    string map[5] =
     {
         "########",
-        "#@     #",
+        "#@  #  #",
         "#   #  #",
-        "#      #",
+        "#   $  #",
         "########"
-    };//closes
-    for (int i = 0; i < 5; i++)
+    };
+
+    int playerX = 1;
+    int playerY = 1;
+
+    char input;
+
+    while (true)
     {
-        cout << level[i] << endl;
+        // print map
+        for (int i = 0; i < 5; i++)
+        {
+            cout << map[i] << endl;
+        }
+
+        //get input
+        cout << "Move (WASD): ";
+        cin >> input;
+
+        input = tolower(input);
+
+        int newX = playerX;
+        int newY = playerY;
+
+        if (input == 'w') newX--;
+        if (input == 's') newX++;
+        if (input == 'a') newY--;
+        if (input == 'd') newY++;
+
+        // win condition
+        if (map[newX][newY] == '$')
+        {
+            cout << "YOU WIN LEVEL 2!" << endl;
+            return; // exits level safely
+        }
+
+        // Wall check and moving
+        if (map[newX][newY] != '#')
+        {
+            map[playerX][playerY] = ' ';
+            playerX = newX;
+            playerY = newY;
+            map[playerX][playerY] = '@';
+        }
     }
 }
 
