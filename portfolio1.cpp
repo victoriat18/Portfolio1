@@ -4,12 +4,37 @@ using namespace std;
 
 void loadLevel1() // LEVEL 1
 {
-    cout << "Loading Level 1..." << endl;
+    cout << "Level 1 loaded" << endl;
+    //MAP
+    string level[] =
+    {
+        "########",
+        "#@     #",
+        "#   #  #",
+        "#      #",
+        "########"
+    }; //closes
+    for (int i = 0; i < 5; i++)
+    {
+        cout << level[i] << endl;
+    }
 }
 
 void loadLevel2() // LEVEL 2
 {
-    cout << "Loading Level 2..." << endl;
+    cout << "Level 2 loaded" << endl;
+     string level[] =
+    {
+        "########",
+        "#@     #",
+        "#   #  #",
+        "#      #",
+        "########"
+    };//closes
+    for (int i = 0; i < 5; i++)
+    {
+        cout << level[i] << endl;
+    }
 }
 
 void loadLevel3() // LEVEL 3
