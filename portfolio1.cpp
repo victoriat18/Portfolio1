@@ -11,7 +11,7 @@ void loadLevel1()
     string map[5] =
     {
         "########",
-        "#@     #",
+        "#@  >  #",
         "#   #  #",
         "#   $  #",
         "########"
@@ -19,6 +19,12 @@ void loadLevel1()
 
     int playerX = 1;
     int playerY = 1;
+    //Guard position
+    int guardX = 1;
+    int guardY = 4;
+    //1 means right, -1 means left
+    int guardDirection = -1;
+
 
     char input;
 
@@ -50,8 +56,13 @@ void loadLevel1()
             cout << "YOU WIN LEVEL 1!" << endl;
             return; // exits level safely
         }
+        if (map[newX][newY]=='>')
+        {
+            cout << "YOU WERE CAUGHT!";
+            return;
+        }
 
-        // Wall check and moving
+        // Wall check and moving, moving player
         if (map[newX][newY] != '#')
         {
             map[playerX][playerY] = ' ';
@@ -59,6 +70,29 @@ void loadLevel1()
             playerY = newY;
             map[playerX][playerY] = '@';
         }
+        //Moving the guard
+        map [guardX][guardY] = ' ';
+//check next before moving, crash impliment
+if (map[guardX][guardY + guardDirection] == '#')
+{
+    guardDirection = -guardDirection;
+}
+        guardY = guardY + guardDirection;
+
+        map[guardX][guardY] = '>';
+        //GUARD VISION
+        if (playerX == guardX){
+            if (guardDirection == 1 && playerY > guardY){
+                cout << "YOU WERE CAUGHT!" << endl;
+                return;
+            }
+            if (guardDirection == -1 && playerY < guardY)
+            {
+                cout << "YOU WERE CAUGHT!" << endl;
+                return;
+            }
+        }
+        
     }
 }
 
@@ -133,6 +167,7 @@ cout << "Welcome to Ultra-Spy" << endl;
 cout << "Select a level: " << endl; 
 cout << "1) A New Enemy" << endl;
 cout << "2) The Truth of the Weapon" << endl;
+cout << "3) Revenge of the General" << endl;
 
 getline(cin, choice);
 
