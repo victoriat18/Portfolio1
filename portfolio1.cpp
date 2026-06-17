@@ -11,9 +11,9 @@ void loadLevel1()
     string map[5] =
     {
         "########",
-        "#@  >  #",
+        "#      #",
         "#   #  #",
-        "#   $  #",
+        "#      #",
         "########"
     };
 
@@ -21,7 +21,7 @@ void loadLevel1()
     int playerY = 1;
     //Guard position
     int guardX = 1;
-    int guardY = 4;
+    int guardY = 6;
     //1 means right, -1 means left
     int guardDirection = -1;
 
@@ -33,13 +33,20 @@ void loadLevel1()
         // print map
         for (int i = 0; i < 5; i++)
         {
-            cout << map[i] << endl;
+            for (int j = 0; j < 8; j++){
+                if (i == playerX && j == playerY)
+                cout << '@';
+                else if (i == guardX && j == guardY)
+                cout << '>';
+                else
+                cout << map[i][j];
+            }
+            cout << endl;
         }
 
         //get input
         cout << "Move (WASD): ";
         cin >> input;
-
         input = tolower(input);
 
         int newX = playerX;
@@ -54,9 +61,9 @@ void loadLevel1()
         if (map[newX][newY] == '$')
         {
             cout << "YOU WIN LEVEL 1!" << endl;
-            return; // exits level safely
+            return; // exits
         }
-        if (map[newX][newY]=='>')
+        if (newX == guardX && newY == guardY) //guard caught player
         {
             cout << "YOU WERE CAUGHT!";
             return;
@@ -65,22 +72,21 @@ void loadLevel1()
         // Wall check and moving, moving player
         if (map[newX][newY] != '#')
         {
-            map[playerX][playerY] = ' ';
             playerX = newX;
             playerY = newY;
-            map[playerX][playerY] = '@';
+
         }
-        //Moving the guard
-        map [guardX][guardY] = ' ';
+
+
+
 //check next before moving, crash impliment
-if (map[guardX][guardY + guardDirection] == '#')
+if (guardY + guardDirection < 0 || guardY + guardDirection >= 8 || map[guardX][guardY + guardDirection] == '#')
 {
     guardDirection = -guardDirection;
 }
         guardY = guardY + guardDirection;
 
-        map[guardX][guardY] = '>';
-        //GUARD VISION
+        //GUARD VISION, lose part
         if (playerX == guardX){
             if (guardDirection == 1 && playerY > guardY){
                 cout << "YOU WERE CAUGHT!" << endl;
@@ -96,7 +102,7 @@ if (map[guardX][guardY + guardDirection] == '#')
     }
 }
 
-void loadLevel2() // LEVEL 2
+void loadLevel2() // LEVEL 2 different map layout
 {
     cout << "Level 2 loaded" << endl;
 
