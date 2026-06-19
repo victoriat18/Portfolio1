@@ -319,7 +319,7 @@ void loadLevel3() // LEVEL 3: Revenge of the General, DIFFERENT MAP
 int main(){
 string choice; // user input
  
-
+//main menu
 cout << "Welcome to Ultra-Spy" << endl;
 cout << "Select a level: " << endl; 
 cout << "1) A New Enemy" << endl;
