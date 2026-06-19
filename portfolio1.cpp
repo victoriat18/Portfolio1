@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-
 using namespace std;
+
 // LEVEL 1 : A New Enemy, Basic Beginner level!
 void loadLevel1() 
 {
@@ -112,6 +112,7 @@ void loadLevel1()
 // LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
 void loadLevel2() 
 {
+    //map loaded
     cout << "Level 2 loaded" << endl;
 
     string map[5] =
@@ -136,7 +137,7 @@ void loadLevel2()
 
     while (true)
     {
-        // Print map
+        //prints map and the user's symbol
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 8; j++)
@@ -163,29 +164,26 @@ void loadLevel2()
         if (input == 's') newX++;
         if (input == 'a') newY--;
         if (input == 'd') newY++;
-
-        // Win condition
+        //win condition
         if (map[newX][newY] == '$')
         {
             cout << "YOU WIN LEVEL 2!" << endl;
             return;
         }
-
-        // Lose condition (walking into guard)
+        //lose condition (walking into guard)
         if (newX == guardX && newY == guardY)
         {
             cout << "YOU WERE CAUGHT!" << endl;
             return;
         }
 
-        // Move player
+        //move player
         if (map[newX][newY] != '#')
         {
             playerX = newX;
             playerY = newY;
         }
-
-        // Guard movement
+        //guard movement
         if (guardY + guardDirection < 0 ||
             guardY + guardDirection >= 8 ||
             map[guardX][guardY + guardDirection] == '#')
@@ -194,14 +192,12 @@ void loadLevel2()
         }
 
         guardY += guardDirection;
-
-        // Update guard symbol
+        //update guard symbol
         if (guardDirection == 1)
             guardSymbol = '>';
         else
             guardSymbol = '<';
-
-        // Guard vision
+        //guard vision
         if (playerX == guardX)
         {
             if ((guardDirection == 1 && playerY > guardY) ||
@@ -217,7 +213,7 @@ void loadLevel2()
 void loadLevel3() 
 {
      cout << "Level 3 loaded" << endl;
-
+    //different map loaded
     string map[5] =
 {
     "########",
@@ -226,15 +222,15 @@ void loadLevel3()
     "#    #$#",
     "########"
     }; // map string ends here
+    //variables for guard and player
     int playerX = 1;
     int playerY = 1;
 
     int guardX = 3;
     int guardY = 1;
-
     int guardDirection = -1;
-    char guardSymbol = '<';
 
+    char guardSymbol = '<';
     char input;
 
     while (true)
@@ -253,58 +249,49 @@ void loadLevel3()
             }
             cout << endl;
         }
-
-        // User input
+        // user input and directions
         cout << "Move (WASD): ";
         cin >> input;
         input = tolower(input);
-
+        //x y coords
         int newX = playerX;
         int newY = playerY;
-
         if (input == 'w') newX--;
         if (input == 's') newX++;
         if (input == 'a') newY--;
         if (input == 'd') newY++;
-
-        // Win condition
+        //win condition
         if (map[newX][newY] == '$')
         {
             cout << "YOU WIN LEVEL 3!" << endl;
             return;
         }
-
         // Lose condition (walking into guard)
         if (newX == guardX && newY == guardY)
         {
             cout << "YOU WERE CAUGHT!" << endl;
             return;
         }
-
-        // Move player
+        //move player
         if (map[newX][newY] != '#')
         {
             playerX = newX;
             playerY = newY;
         }
-
-        // Guard movement
+        //guard movement
         if (guardY + guardDirection < 0 ||
             guardY + guardDirection >= 8 ||
             map[guardX][guardY + guardDirection] == '#')
         {
             guardDirection = -guardDirection;
         }
-
         guardY += guardDirection;
-
-        // Update guard symbol
+        //update's guard symbol when it moves left and right
         if (guardDirection == 1)
             guardSymbol = '>';
         else
             guardSymbol = '<';
-
-        // Guard vision
+        //guard vision
         if (playerX == guardX)
         {
             if ((guardDirection == 1 && playerY > guardY) ||
@@ -316,9 +303,9 @@ void loadLevel3()
         }
     }
 }
-
 //Main menu with user input & loading the levels
-int main(){
+int main()
+{
 string choice; // user input
  
 //main menu
