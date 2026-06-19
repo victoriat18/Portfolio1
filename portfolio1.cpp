@@ -4,9 +4,10 @@
 #include <cctype>
 
 using namespace std;
-
-void loadLevel1() // LEVEL 1 : A New Enemy, Basic Beginner level
+// LEVEL 1 : A New Enemy, Basic Beginner level!
+void loadLevel1() 
 {
+    //map loaded
     cout << "Level 1 loaded" << endl;
 
     string map[5] =
@@ -17,11 +18,11 @@ void loadLevel1() // LEVEL 1 : A New Enemy, Basic Beginner level
         "#     $#",
         "########"
     };
-
+    //variables for guards and players
     int playerX = 1;
     int playerY = 1;
 
-    int guardX = 1;
+    int guardX = 2;
     int guardY = 6;
 
     int guardDirection = -1;
@@ -108,7 +109,8 @@ void loadLevel1() // LEVEL 1 : A New Enemy, Basic Beginner level
         }
     }
 }
-void loadLevel2() // LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
+// LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
+void loadLevel2() 
 {
     cout << "Level 2 loaded" << endl;
 
@@ -124,7 +126,7 @@ void loadLevel2() // LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
     int playerX = 1;
     int playerY = 1;
 
-    int guardX = 2;
+    int guardX = 1;
     int guardY = 6;
 
     int guardDirection = -1;
@@ -211,8 +213,8 @@ void loadLevel2() // LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
         }
     }
 }
-
-void loadLevel3() // LEVEL 3: Revenge of the General, DIFFERENT MAP
+// LEVEL 3: Revenge of the General, DIFFERENT MAP!
+void loadLevel3() 
 {
      cout << "Level 3 loaded" << endl;
 
@@ -333,7 +335,7 @@ getline(cin, choice);
  }
 
 
-//case insensitive, if statements
+//case insensitive, if statements for user's input
 if (choice == "1" || choice == "A New Enemy" || choice == "a new enemy")
 {
     loadLevel1(); // function level 1
