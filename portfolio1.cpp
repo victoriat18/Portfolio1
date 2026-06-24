@@ -306,14 +306,19 @@ void loadLevel3()
 //Main menu with user input & loading the levels
 int main()
 {
-string choice; // user input
- 
+ // user input
+ // play again button (NEW ADDITION/PEER)
+string choice;
+char playAgain = 'y';
 //main menu
-cout << "Welcome to Ultra-Spy" << endl;
-cout << "Select a level: " << endl; 
-cout << "1) A New Enemy" << endl;
-cout << "2) The Truth of the Weapon" << endl;
-cout << "3) Revenge of the General" << endl;
+while (playAgain == 'y' || playAgain == 'Y')
+{
+    cout << "Welcome to Ultra-Spy" << endl;
+    cout << "Select a level: " << endl; 
+    cout << "1) A New Enemy" << endl;
+    cout << "2) The Truth of the Weapon" << endl;
+    cout << "3) Revenge of the General" << endl;  
+
 
 getline(cin, choice);
  for (int i = 0; i < choice.length(); i++)
@@ -339,5 +344,11 @@ else
 {
     cout << "Invalid choice." << endl;
 }
-    return 0;
+ cout << "Would you like to play again? (y/n): ";
+ cin >> playAgain;
+ cin.ignore(); //getline for next loop   
+
 }
+cout << "Thanks for playing!" << endl;
+return 0;
+}  
