@@ -9,6 +9,8 @@ void loadLevel1()
 {
     //map loaded
     cout << "Level 1 loaded" << endl;
+    cout << "Reach the $ without being seen by the guard." << endl;
+    cout << "----------------------------------------------" << endl;
 
     string map[5] =
     {
@@ -54,7 +56,12 @@ void loadLevel1()
 
         int newX = playerX;
         int newY = playerY;
-
+//WASD MOVEMENT
+if (input != 'w' && input != 'a' && input != 's' && input != 'd')
+{
+    cout << "Invalid input. Use W, A, S, or D\n";
+    continue;
+}
         if (input == 'w') newX--;
         if (input == 's') newX++;
         if (input == 'a') newY--;
@@ -74,11 +81,16 @@ void loadLevel1()
             return;
         }
 
-        // Move player
+        // Move player & oops you ran into wall message.
         if (map[newX][newY] != '#')
         {
             playerX = newX;
             playerY = newY;
+        }
+        else
+        {
+            cout << "Oops! You crashed into a wall. Use W, A, S, or D to move around obstacles.\n";
+            continue;
         }
 
         // Guard movement
@@ -100,20 +112,41 @@ void loadLevel1()
         // Guard vision
         if (playerX == guardX)
         {
-            if ((guardDirection == 1 && playerY > guardY) ||
-                (guardDirection == -1 && playerY < guardY))
+            // LEFT
+            for (int y = guardY - 1; y >= 0; y--)
             {
-                cout << "YOU WERE CAUGHT!" << endl;
-                return;
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
             }
-        }
-    }
-}
+
+            // RIGHT
+            for (int y = guardY + 1; y < 8; y++)
+            {
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
+            } // end of the (player X == guardX)
+        } // end for the load level 1 void
+    }// while loop ends here
+}// function ends here
+//FIXED GUARD!
+
 // LEVEL 2: The Truth of the Weapon, DIFFERENT MAP!
 void loadLevel2() 
 {
     //map loaded
     cout << "Level 2 loaded" << endl;
+    cout << "Reach the $ without being seen by the guard." << endl;
+    cout << "----------------------------------------------" << endl;
 
     string map[5] =
     {
@@ -159,11 +192,17 @@ void loadLevel2()
 
         int newX = playerX;
         int newY = playerY;
-
+        //MOVEMENT
+    if (input != 'w' && input != 'a' && input != 's' && input != 'd')
+    {
+    cout << "Invalid input. Use W, A, S, or D\n";
+    continue;
+    }
         if (input == 'w') newX--;
         if (input == 's') newX++;
         if (input == 'a') newY--;
         if (input == 'd') newY++;
+        
         //win condition
         if (map[newX][newY] == '$')
         {
@@ -177,11 +216,16 @@ void loadLevel2()
             return;
         }
 
-        //move player
+        //Move player & oops you ran into wall message.
         if (map[newX][newY] != '#')
         {
             playerX = newX;
             playerY = newY;
+        }
+        else
+        {
+            cout << "Oops! You crashed into a wall. Use W, A, S, or D to move around obstacles.\n";
+            continue;
         }
         //guard movement
         if (guardY + guardDirection < 0 ||
@@ -197,22 +241,41 @@ void loadLevel2()
             guardSymbol = '>';
         else
             guardSymbol = '<';
-        //guard vision
         if (playerX == guardX)
         {
-            if ((guardDirection == 1 && playerY > guardY) ||
-                (guardDirection == -1 && playerY < guardY))
+            // LEFT
+            for (int y = guardY - 1; y >= 0; y--)
             {
-                cout << "YOU WERE CAUGHT!" << endl;
-                return;
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
             }
-        }
-    }
-}
+
+            // RIGHT
+            for (int y = guardY + 1; y < 8; y++)
+            {
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
+            } // end of the (player X == guardX)
+        } // end for the load level 1 void
+    }// while loop ends here
+}// function ends here
+
 // LEVEL 3: Revenge of the General, DIFFERENT MAP!
 void loadLevel3() 
 {
-     cout << "Level 3 loaded" << endl;
+    cout << "Level 3 loaded" << endl;
+    cout << "Reach the $ without being seen by the guard." << endl;
+    cout << "----------------------------------------------" << endl;
     //different map loaded
     string map[5] =
 {
@@ -256,10 +319,17 @@ void loadLevel3()
         //x y coords
         int newX = playerX;
         int newY = playerY;
+       //MOVEMENT, new
+    if (input != 'w' && input != 'a' && input != 's' && input != 'd')
+    {
+    cout << "Invalid input. Use W, A, S, or D\n";
+    continue;
+    }
         if (input == 'w') newX--;
         if (input == 's') newX++;
         if (input == 'a') newY--;
         if (input == 'd') newY++;
+
         //win condition
         if (map[newX][newY] == '$')
         {
@@ -272,11 +342,17 @@ void loadLevel3()
             cout << "YOU WERE CAUGHT!" << endl;
             return;
         }
-        //move player
+         // Move player & oops you ran into wall message.
         if (map[newX][newY] != '#')
         {
             playerX = newX;
             playerY = newY;
+        }
+        else
+        {
+            cout << "Oops! You crashed into a wall. Use W, A, S, or D to move around obstacles.\n";
+            continue;
+
         }
         //guard movement
         if (guardY + guardDirection < 0 ||
@@ -291,19 +367,36 @@ void loadLevel3()
             guardSymbol = '>';
         else
             guardSymbol = '<';
-        //guard vision
         if (playerX == guardX)
         {
-            if ((guardDirection == 1 && playerY > guardY) ||
-                (guardDirection == -1 && playerY < guardY))
+            // LEFT
+            for (int y = guardY - 1; y >= 0; y--)
             {
-                cout << "YOU WERE CAUGHT!" << endl;
-                return;
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
             }
-        }
-    }
-}
-//Main menu with user input & loading the levels
+
+            // RIGHT
+            for (int y = guardY + 1; y < 8; y++)
+            {
+                if (map[guardX][y] == '#') break;
+
+                if (y == playerY)
+                {
+                    cout << "YOU WERE CAUGHT!" << endl;
+                    return;
+                }
+            } // end of the (player X == guardX)
+        } // end for the load level 1 void
+    }// while loop ends here
+}// function ends here
+
+//Main menu with user input & loading the levels, play again added!
 int main()
 {
  // user input
@@ -325,6 +418,7 @@ getline(cin, choice);
  {
     choice[i] = tolower(choice[i]);
  }
+ 
 
 
 //case insensitive, if statements for user's input
